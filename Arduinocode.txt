@@ -1,0 +1,39 @@
+
+#include <Servo.h>
+Servo myservo;//servo object to control servo
+int potPin = A0;    // select the input pin for the potentiometer
+
+int val = 0;       // variable to store the value coming from the sensor
+int timerdelay;
+
+void setup() {
+myservo.attach(9);//Servo Connected to Pin 9
+}
+
+void loop() {
+  val = analogRead(potPin);
+if(val<100)
+{
+timerdelay=5*1000*60://5 Minutes Delay
+}
+else if(val>=100 && val<=200)
+{
+timerdelay=10*1000*60;//10 Minutes delay
+}
+else if(val>200 && val<=300)
+{
+timerdelay=15*1000*60;//15 minutes Delay
+}
+else if(val>300 && val<=400)
+{
+timerdelay=20*1000*60;//20 Minutes Delay
+}
+else
+{
+timerdelay = 0;
+}
+myservo.write(180);//Open the Valve
+delay(timerdelay);//Wait for specified delay
+myservo.write(0);//Close the Valve
+                
+}
